@@ -1,5 +1,6 @@
-
 package app;
+
+
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -277,9 +278,8 @@ public class App extends Application {
 
             // Apply seasonal offer if available
             for (SeasonalOffer offer : seasonalOffers) {
-                 if (offer.checkOffer()) {
-                    double discountedPrice = offer.applyOffer(booking.calculatePrice());
-                    booking.calculatePrice(); // Recalculate to update total price
+                  if (offer.checkOffer()) {
+                    booking.setOfferApplied(offer);
                     break;
                 }
             }
@@ -289,8 +289,7 @@ public class App extends Application {
             if (!promoCode.isEmpty()) {
                 try {
                     SpecialCodeOffer promoOffer = new SpecialCodeOffer(promoCode);
-                    double discountedPrice = promoOffer.applyOffer(booking.calculatePrice());
-                    booking.calculatePrice(); // Recalculate to update total price
+                    booking.setOfferApplied(promoOffer);
                 } catch (InvalidCodeException e) {
                     showAlert("Invalid Promo Code", "The promo code you entered is not valid");
                 }
