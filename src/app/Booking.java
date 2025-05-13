@@ -48,7 +48,7 @@ public class Booking {
             double finalPrice = basePrice + servicesPrice;
             
             if (offerApplied != null) {
-                finalPrice = offerApplied.applyDiscount(finalPrice);
+                finalPrice = offerApplied.applyOffer(finalPrice);
             }
             
             this.totalPrice = finalPrice;
@@ -155,7 +155,7 @@ public class Booking {
         return offerApplied;
     }
 
-   /* public void setOfferApplied(Offer offer) throws InvalidOfferException {
+    public void setOfferApplied(Offer offer) throws InvalidOfferException {
         if (offer == null) {
             throw new InvalidOfferException("Offer cannot be null");
         }
@@ -165,15 +165,9 @@ public class Booking {
         this.offerApplied = offer;
         calculatePrice(); // Recalculate with new offer
     }
-}*/
+}
 
 // Supporting enums and interfaces
 enum BookingStatus {
     CONFIRMED, CANCELLED, COMPLETED
-}
-
-interface Offer {
-    double applyDiscount(double originalPrice);
-}
-
 }
