@@ -29,7 +29,7 @@ public class Booking {
         if (checkInDate.after(checkOutDate)) {
             throw new InvalidBookingException("Check-in date must be before check-out date");
         }
-
+     
         this.bookingId = bookingId;
         this.customer = customer;
         this.room = room;
@@ -117,7 +117,11 @@ public class Booking {
             super(message);
         }
     }
-
+    public static class InvalidOfferException extends Exception {
+        public InvalidOfferException(String message) {
+            super(message);
+        }
+    }
     // Getters and Setters
     public int getBookingId() {
         return bookingId;
